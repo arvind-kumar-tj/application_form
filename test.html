@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+
+    <script type="text/javascript" src="myValidateData.js"></script>
+</head>
+
+<body>
+    <form id="formValidate" method="POST">
+        <input type="text" name="name" class="required" id="required" />
+        <input type="text" name="number" class="number" id="number" />
+        <input type="text" name="email" class="email" id="email" />
+        <button type="submit" class="submitButton">Submit</button>
+    </form>
+
+
+
+    <script>
+        // document.getElementById('validate').addEventListener('submit')
+
+
+        //#get all inputs tags inside the form
+        var x = document.getElementById("formValidate").getElementsByTagName("input");
+        //or
+        //var x = document.forms["formValidate"].getElementsByTagName("input")
+        //console.log(x);
+
+        //#onSubmit button
+        document.getElementById("formValidate").onsubmit = function (e) {
+            e.preventDefault();
+            myValidateData.dataValidate(x);
+        };
+    </script>
+
+
+
+</body>
+
+</html>
