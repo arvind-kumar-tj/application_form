@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+.form_div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 18em;
+    height: max-content;
+    margin-top: -9em;
+    /*set to a negative number 1/2 of your height*/
+    margin-left: -9em;
+    /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+}
+
+.validation_error {
+    box-shadow: 0px 0px 2px;
+}
+
+.mainform {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin: 10px;
+}
+
+.mainform input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.mainform input:focus {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.mainform span {
+    color: #ff0000;
+}
+
+
+.mainform button {
+    padding: 10px;
+}

@@ -5,19 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST</title>
-
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="myValidateData.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <form id="formValidate" method="POST">
-        <input type="text" name="name" class="required" id="required" />
-        <input type="text" name="number" class="number" id="number" />
-        <input type="text" name="email" class="email" id="email" />
-        <button type="submit" class="submitButton">Submit</button>
-    </form>
-
-
+    <div class="form_div">
+        <form class="mainform" id="formValidate" method="POST">
+            <label>Username</label>
+            <input type="text" name="name" class="fieldRequired" /><span class="fieldRequired_error"></span>
+            <label>Phone No.</label>
+            <input type="text" name="number" class="numberRequired" /><span class="numberRequired_error"></span>
+            <label>Email Id</label>
+            <input type="text" name="email" class="emailRequired" /><span class="emailRequired_error"></span>
+            <button type="submit" class="submitButton">Submit</button>
+        </form>
+    </div>
 
     <script>
         // document.getElementById('validate').addEventListener('submit')

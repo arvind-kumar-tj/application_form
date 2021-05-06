@@ -1,40 +1,54 @@
+let error_icon = "<i style=\"margin-right: 5px;\" class=\"fa fa-exclamation-circle\"></i>"
+let e1 = "Please enter the value here";
+let e2 = "Please enter the number here";
+let e3 = "Please enter the valid email id here";
+
 var myValidateData = {
 
     checkClass: {
-        "required": "requireFeild",
-        "number": "checkNumber",
-        "email": "checkEmail"
+        "fieldRequired": "checkRequireField",
+        "numberRequired": "checkNumberField",
+        "emailRequired": "checkEmailField"
     },
-    requireFeild: function (string) {
-        if (string == "") {
-            document.getElementById("required").insertAdjacentHTML("afterend", "<br>This field is required<br>");
-        }
-    },
-    checkNumber: function (number) {
-        if (isNaN(number) || number == "") {
-            document.getElementById("number").insertAdjacentHTML("afterend", "<br>This field need a number<br>");
-        }
-    },
-    checkEmail: function (email) {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (email == "") {
-            document.getElementById("email").insertAdjacentHTML("afterend", "<br>This field need a valid email id<br>");
-        } else if (email.match(mailformat)) {
-
+    checkRequireField: function (inputTag, inputClass, inputValue) {
+        if (inputValue == "") {
+            inputTag.classList.add("validation_error");
+            inputTag.nextElementSibling.innerHTML = error_icon + e1;
         } else {
-            document.getElementById("email").insertAdjacentHTML("afterend", "<br>This is not a valid email id<br>");
+            inputTag.nextElementSibling.innerHTML = "";
         }
     },
-    dataValidate: function (strings) {
-        // console.log(strings);
-        for (let string of strings) {
-            // console.log(string.classList);
-            for (let cls of string.classList) {
-                // console.log(cls);
-                var elementSelect = document.getElementById(cls);
-                var inputValue = elementSelect.value;
-                //console.log(inputValue + ' & ' + myValidateData.checkClass[cls]);
-                myValidateData[this.checkClass[cls]](inputValue);
+    checkNumberField: function (inputTag, inputClass, inputValue) {
+        if (inputValue == "") {
+            inputTag.classList.add("validation_error");
+            inputTag.nextElementSibling.innerHTML = error_icon + e1;
+        } else if (isNaN(inputValue)) {
+            inputTag.classList.add("validation_error");
+            inputTag.nextElementSibling.innerHTML = error_icon + e2;
+        } else {
+            inputTag.nextElementSibling.innerHTML = "";
+        }
+    },
+    checkEmailField: function (inputTag, inputClass, inputValue) {
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (inputValue == "") {
+            inputTag.classList.add("validation_error");
+            inputTag.nextElementSibling.innerHTML = error_icon + e1;
+        } else if (!inputValue.match(mailformat)) {
+            inputTag.classList.add("validation_error");
+            inputTag.nextElementSibling.innerHTML = error_icon + e3;
+        } else {
+            inputTag.nextElementSibling.innerHTML = "";
+        }
+    },
+    dataValidate: function (inpArray) {
+        for (let inp of inpArray) {
+            var inpVal = inp.value;
+            for (let inpCla of inp.classList) {
+                if (this.checkClass.hasOwnProperty(inpCla)) {
+                    myValidateData[this.checkClass[inpCla]](inp, inpCla, inpVal);
+
+                }
             }
         }
     },
