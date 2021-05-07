@@ -16,6 +16,7 @@ var myValidateData = {
             inputTag.nextElementSibling.innerHTML = error_icon + e1;
         } else {
             inputTag.nextElementSibling.innerHTML = "";
+            inputTag.classList.remove("validation_error");
         }
     },
     checkNumberField: function (inputTag, inputClass, inputValue) {
