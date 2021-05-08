@@ -46,7 +46,7 @@
             </div>
             <div>
                 <label>Select Gender</label>
-                <div id="radiobuttonGroup">
+                <div id="radiobuttonGroup1">
                     <label><input type="radio" id="male" name="gender" value="male" class="radiobuttonRequired">
                         Male</label>
                     <label><input type="radio" id="female" name="gender" value="female" class="radiobuttonRequired">
@@ -57,8 +57,18 @@
             </div>
 
             <div>
+                <label>Select Choice</label>
+                <div id="radiobuttonGroup2">
+                    <label><input type="radio" id="male" name="choice" value="yes" class="radiobuttonRequired">
+                        Yes</label>
+                    <label><input type="radio" id="female" name="choice" value="no" class="radiobuttonRequired">
+                        No</label>
+                </div><span></span>
+            </div>
+
+            <div>
                 <label>Select Social Media</label>
-                <div id="checkboxGroup">
+                <div id="checkboxGroup1">
                     <label><input type="checkbox" name="social_media" value="Facebook" class="checkboxRequired">
                         Facebook</label>
                     <label><input type="checkbox" name="social_media" value="Instagram" class="checkboxRequired">
@@ -69,22 +79,39 @@
                         Others</label>
                 </div><span></span>
             </div>
+            <div>
+                <label>Select Profession</label>
+                <div id="checkboxGroup2">
+                    <label><input type="checkbox" name="profession" value="Student" class="checkboxRequired">
+                        Student</label>
+                    <label><input type="checkbox" name="profession" value="Teacher" class="checkboxRequired">
+                        Teacher</label>
+                    <label><input type="checkbox" name="profession" value="Administrator" class="checkboxRequired">
+                        Administrator</label>
+                    <label><input type="checkbox" name="profession" value="Others" class="checkboxRequired">
+                        Others</label>
+                </div><span></span>
+            </div>
             <button type="submit" class="submitButton">Submit</button>
         </form>
     </div>
 
     <script>
         var allForm = document.getElementById("formValidate");
-        var radiobtns = document.getElementById("radiobuttonGroup");
-        var checkboxbtns = document.getElementById("checkboxGroup");
+        var radiobtns1 = document.getElementById("radiobuttonGroup1");
+        var radiobtns2 = document.getElementById("radiobuttonGroup2");
+        var checkboxbtns1 = document.getElementById("checkboxGroup1");
+        var checkboxbtns2 = document.getElementById("checkboxGroup2");
 
 
         //#onSubmit button
         document.getElementById("formValidate").onsubmit = function (e) {
             e.preventDefault();
             myValidateData.dataValidate(allForm);
-            myValidateData.dataValidate(radiobtns);
-            myValidateData.dataValidate(checkboxbtns);
+            myValidateData.checkRadiobuttonField(radiobtns1);
+            myValidateData.checkRadiobuttonField(radiobtns2);
+            myValidateData.checkCheckboxField(checkboxbtns1);
+            myValidateData.checkCheckboxField(checkboxbtns2);
         };
     </script>
 

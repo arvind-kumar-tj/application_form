@@ -5,8 +5,8 @@ var myValidateData = {
         "numberRequired": "checkNumberField",
         "emailRequired": "checkEmailField",
         "optionRequired": "checkOptionField",
-        "radiobuttonRequired": "checkRadiobuttonField",
-        "checkboxRequired": "checkCheckboxField"
+        // "radiobuttonRequired": "checkRadiobuttonField",
+        // "checkboxRequired": "checkCheckboxField"
     },
     addErrorText: {
         "error_icon": "<i style=\"margin-right: 5px;\" class=\"fa fa-exclamation-circle\"></i>",
@@ -79,30 +79,40 @@ var myValidateData = {
             this.removeErrorClass(inputTag, "validation_error");
         }
     },
-    // checkRadiobuttonField: function (radiobuttons) {
-    //     let values = [];
-    //     for (let radiobutton of radiobuttons) {
-    //         if (radiobutton.checked == true) {
-    //             values.push('true');
-    //         } else {
-    //             values.push('false');
-    //         }
-    //     }
-    //     const allEqual = arr => arr.every(val => val === arr[0]);
-    //     if (allEqual(values)) {
-    //         radiobuttons.innerHTML = this.addErrorText["error_icon"] + this.addErrorText["radiobtnError"];
-    //     }
-    // },
-    // checkCheckboxField: function (inputTag, inputClass, inputValue) {
-    //     if (inputValue == "none") {
-    //         this.addErrorClass(inputTag, "validation_error");
-    //         this.addErrorClass(inputTag.nextElementSibling, "error_value");
-    //         inputTag.nextElementSibling.innerHTML = this.addErrorText["error_icon"] + this.addErrorText["optionError"];
-    //     } else {
-    //         inputTag.nextElementSibling.innerHTML = "";
-    //         this.removeErrorClass(inputTag, "validation_error");
-    //     }
-    // },
+    checkRadiobuttonField: function (radiobuttons) {
+        let values = [];
+        for (let radiobutton of radiobuttons.children) {
+            if (radiobutton.children[0].checked == true) {
+                values.push('true');
+            } else {
+                values.push('false');
+            }
+        }
+        const allEqual = arr => arr.every(val => val === arr[0]);
+        if (allEqual(values)) {
+            this.addErrorClass(radiobuttons.nextElementSibling, "error_value");
+            radiobuttons.nextElementSibling.innerHTML = this.addErrorText["error_icon"] + this.addErrorText["radiobtnError"];
+        } else {
+            radiobuttons.nextElementSibling.innerHTML = "";
+        }
+    },
+    checkCheckboxField: function (radiobuttons) {
+        let values = [];
+        for (let radiobutton of radiobuttons.children) {
+            if (radiobutton.children[0].checked == true) {
+                values.push('true');
+            } else {
+                values.push('false');
+            }
+        }
+        const allEqual = arr => arr.every(val => val === arr[0]);
+        if (allEqual(values)) {
+            this.addErrorClass(radiobuttons.nextElementSibling, "error_value");
+            radiobuttons.nextElementSibling.innerHTML = this.addErrorText["error_icon"] + this.addErrorText["radiobtnError"];
+        } else {
+            radiobuttons.nextElementSibling.innerHTML = "";
+        }
+    },
 
 
 
@@ -118,7 +128,6 @@ var myValidateData = {
                 }
             }
 
-            var radiobtnvalue = [];
 
         }
     },
