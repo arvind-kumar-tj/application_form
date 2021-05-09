@@ -8,8 +8,8 @@ body {
 }
 
 .form_div {
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 25%;
     left: 50%;
     width: 18em;
     height: max-content;
@@ -30,25 +30,38 @@ body {
     flex-direction: column;
     row-gap: 5px;
     margin: 10px;
+    padding: 5px;
 }
 
-.mainform input {
+.mainform input,
+textarea,
+select,
+button {
     padding: 5px;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 0.5px solid black;
 }
 
-.mainform input:focus {
-    padding: 5px;
-    border-radius: 5px;
-
+.mainform * {
+    outline: none;
 }
 
-.mainform span {
+span.error_value {
     color: #ff0000;
+    font-size: 14px;
+}
+
+
+.mainform textarea {
+    padding: 5px;
 }
 
 
 .mainform button {
     padding: 10px;
+}
+
+.mainform select {
+    padding: 5px;
+    width: 100%;
 }
