@@ -44,27 +44,6 @@ var myValidateData = {
                 this.err_text_val(tag, err)
             }
         },
-        //check all values in arr are equal or not but not work when it being call
-        allEqual: function (arr) {
-            arr.every(val => val === arr[0]);
-        },
-        //call at the end of iteration of a group of radio & checkbox buttons and remove the all elements after error message will shown
-        emptyArr: function (arr, type) {
-            let clicks = [];
-            let p = arr[0].parentNode.parentNode;
-            let err = p.dataset.errormessage;
-            for (click of arr) {
-                bool = click.checked;
-                clicks.push(bool);
-            }
-            const allEqual = arr => arr.every(val => val === arr[0]);
-            if (allEqual(clicks)) {
-                this.addErrorClass(p.nextElementSibling, "error_value");
-                this.err_message(p, err, type);
-            } else {
-                p.nextElementSibling.innerHTML = "";
-            }
-        }
     },
 
 
