@@ -14,13 +14,13 @@
     <div class="form_div">
         <form class="mainform" id="formValidate" method="POST">
             <label>Username</label>
-            <input type="text" name="name" class="fieldRequired" /><span></span>
+            <input type="text" name="name" class="fieldRequired" data-error="Please enter your username" /><span></span>
             <label>Phone No.</label>
             <input type="text" name="number" class="numberRequired" /><span></span>
             <label>Email Id</label>
             <input type="text" name="email" class="emailRequired" /><span></span>
             <label>Remarks </label>
-            <textarea name="remarks" placeholder="Add your remarks here" class="fieldRequired"></textarea><span></span>
+            <textarea name="remarks" placeholder="Add your remarks here" class="textRequired"></textarea><span></span>
             <label>Why you join us? </label>
             <textarea name="why_join_us" placeholder="Add your answer here"
                 class="fieldRequired"></textarea><span></span>
@@ -46,72 +46,64 @@
             </div>
             <div>
                 <label>Select Gender</label>
-                <div id="radiobuttonGroup1">
-                    <label><input type="radio" name="gender" value="male" class="radiobuttonRequired">
+                <div id="radiobuttonRequired">
+                    <label><input type="radio" name="gender" value="male">
                         Male</label>
-                    <label><input type="radio" name="gender" value="female" class="radiobuttonRequired">
+                    <label><input type="radio" name="gender" value="female">
                         Female</label>
-                    <label><input type="radio" name="gender" value="other" class="radiobuttonRequired">
+                    <label><input type="radio" name="gender" value="other">
                         Other</label>
                 </div><span></span>
             </div>
 
             <div>
                 <label>Select Choice</label>
-                <div id="radiobuttonGroup2">
-                    <label><input type="radio" name="choice" value="yes" class="radiobuttonRequired">
+                <div id="radiobuttonRequired">
+                    <label><input type="radio" name="choice" value="yes">
                         Yes</label>
-                    <label><input type="radio" name="choice" value="no" class="radiobuttonRequired">
+                    <label><input type="radio" name="choice" value="no">
                         No</label>
                 </div><span></span>
             </div>
 
             <div>
                 <label>Select Social Media</label>
-                <div id="checkboxGroup1">
-                    <label><input type="checkbox" name="social_media" value="Facebook" class="checkboxRequired">
+                <div id="checkboxRequired">
+                    <label><input type="checkbox" name="social_media" value="Facebook">
                         Facebook</label>
-                    <label><input type="checkbox" name="social_media" value="Instagram" class="checkboxRequired">
+                    <label><input type="checkbox" name="social_media" value="Instagram">
                         Instagram</label>
-                    <label><input type="checkbox" name="social_media" value="Google+" class="checkboxRequired">
+                    <label><input type="checkbox" name="social_media" value="Google+">
                         Google+</label>
-                    <label><input type="checkbox" name="social_media" value="Others" class="checkboxRequired">
+                    <label><input type="checkbox" name="social_media" value="Others">
                         Others</label>
                 </div><span></span>
             </div>
             <div>
                 <label>Select Profession</label>
-                <div id="checkboxGroup2">
-                    <label><input type="checkbox" name="profession" value="Student" class="checkboxRequired">
+                <div id="checkboxRequired">
+                    <label><input type="checkbox" name="profession" value="Student">
                         Student</label>
-                    <label><input type="checkbox" name="profession" value="Teacher" class="checkboxRequired">
+                    <label><input type="checkbox" name="profession" value="Teacher">
                         Teacher</label>
-                    <label><input type="checkbox" name="profession" value="Administrator" class="checkboxRequired">
+                    <label><input type="checkbox" name="profession" value="Administrator">
                         Administrator</label>
-                    <label><input type="checkbox" name="profession" value="Others" class="checkboxRequired">
+                    <label><input type="checkbox" name="profession" value="Others">
                         Others</label>
                 </div><span></span>
             </div>
-            <button type="submit" class="submitButton">Submit</button>
+
+            <button type="submit">Submit</button>
         </form>
     </div>
 
     <script>
         var allForm = document.getElementById("formValidate");
-        var radiobtns1 = document.getElementById("radiobuttonGroup1");
-        var radiobtns2 = document.getElementById("radiobuttonGroup2");
-        var checkboxbtns1 = document.getElementById("checkboxGroup1");
-        var checkboxbtns2 = document.getElementById("checkboxGroup2");
-
-
         //#onSubmit button
         document.getElementById("formValidate").onsubmit = function (e) {
             e.preventDefault();
             myValidateData.dataValidate(allForm);
-            myValidateData.checkRadiobuttonField(radiobtns1);
-            myValidateData.checkRadiobuttonField(radiobtns2);
-            myValidateData.checkCheckboxField(checkboxbtns1);
-            myValidateData.checkCheckboxField(checkboxbtns2);
+
         };
     </script>
 
