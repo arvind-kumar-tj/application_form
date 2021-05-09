@@ -12,9 +12,10 @@
 - if input is select feild with options as a dropdown then add **optionRequired** as className in that select tag.
 
 ## for radio buttons & checkboxs
-- put all the radio buttons inside a div element and give class of **radiobuttonRequired** of each input[type="radio"]
+- put all the radio buttons inside a div element & give class of **radiobuttonRequired** and put input[type="radio"] inside it.
 
-- put all the radio buttons inside a div element and give class of **checkboxRequired** of each input[type="checkbox"]
+- put all the radio buttons inside a div element & give class of **checkboxRequired** and put input[type="checkbox"] inside it.
+
 
 
 Style them as per your need by selecting that element by its parent as I do in this files
