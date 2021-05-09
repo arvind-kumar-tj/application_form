@@ -13,20 +13,22 @@
 <body>
     <div class="form_div">
         <form class="mainform" id="formValidate" method="POST">
-            <label>Username</label>
-            <input type="text" name="name" class="fieldRequired" data-error="Please enter your username" /><span></span>
+            <!-- <label>Username</label>
+            <input type="text" name="name" class="fieldRequired"
+                data-errormessage="Please enter your username" /><span></span>
             <label>Phone No.</label>
             <input type="text" name="number" class="numberRequired" /><span></span>
             <label>Email Id</label>
             <input type="text" name="email" class="emailRequired" /><span></span>
             <label>Remarks </label>
-            <textarea name="remarks" placeholder="Add your remarks here" class="textRequired"></textarea><span></span>
+            <textarea name="remarks" placeholder="Add your remarks here" class="textRequired"
+                data-errormessage="Please enter the remarks here"></textarea><span></span>
             <label>Why you join us? </label>
             <textarea name="why_join_us" placeholder="Add your answer here"
                 class="fieldRequired"></textarea><span></span>
             <div>
                 <label>Select 1 Car</label>
-                <select name="cars" class="optionRequired">
+                <select name="cars" class="optionRequired" data-errormessage="Please select">
                     <option value="none">--select--</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
@@ -43,10 +45,10 @@
                     <option value="mercedes">Mercedes</option>
                     <option value="audi">Audi</option>
                 </select><span></span>
-            </div>
+            </div> -->
             <div>
                 <label>Select Gender</label>
-                <div id="radiobuttonRequired">
+                <div class="radiobuttonRequired" data-errormessage="Please click one">
                     <label><input type="radio" name="gender" value="male">
                         Male</label>
                     <label><input type="radio" name="gender" value="female">
@@ -58,7 +60,7 @@
 
             <div>
                 <label>Select Choice</label>
-                <div id="radiobuttonRequired">
+                <div class="radiobuttonRequired">
                     <label><input type="radio" name="choice" value="yes">
                         Yes</label>
                     <label><input type="radio" name="choice" value="no">
@@ -68,7 +70,7 @@
 
             <div>
                 <label>Select Social Media</label>
-                <div id="checkboxRequired">
+                <div class="checkboxRequired" data-errormessage="Please click one">
                     <label><input type="checkbox" name="social_media" value="Facebook">
                         Facebook</label>
                     <label><input type="checkbox" name="social_media" value="Instagram">
@@ -81,7 +83,7 @@
             </div>
             <div>
                 <label>Select Profession</label>
-                <div id="checkboxRequired">
+                <div class="checkboxRequired">
                     <label><input type="checkbox" name="profession" value="Student">
                         Student</label>
                     <label><input type="checkbox" name="profession" value="Teacher">
@@ -90,6 +92,16 @@
                         Administrator</label>
                     <label><input type="checkbox" name="profession" value="Others">
                         Others</label>
+                </div><span></span>
+            </div>
+
+            <div>
+                <label>Select Choice</label>
+                <div class="radiobuttonRequired">
+                    <label><input type="radio" name="choice1" value="yes">
+                        Yes</label>
+                    <label><input type="radio" name="choice1" value="no">
+                        No</label>
                 </div><span></span>
             </div>
 
@@ -103,7 +115,6 @@
         document.getElementById("formValidate").onsubmit = function (e) {
             e.preventDefault();
             myValidateData.dataValidate(allForm);
-
         };
     </script>
 
