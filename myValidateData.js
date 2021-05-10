@@ -142,7 +142,7 @@ var myValidateData = {
                     clicks.push(bool);
                 }
             }
-            if (allEqual(clicks)) {
+            if (clicks.includes(false) && allEqual(clicks)) {
                 this.collections.addErrorClass(elms.nextElementSibling, "error_value");
                 this.collections.err_message(elms, err_message, "checkbox");
             } else {
