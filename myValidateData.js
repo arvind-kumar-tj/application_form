@@ -53,6 +53,7 @@ var myValidateData = {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorClass(tag.nextElementSibling, "error_value");
             this.collections.err_message(tag, err, "field");
+            return true;
         } else {
             tag.nextElementSibling.innerHTML = "";
             this.collections.removeErrorClass(tag, "validation_error");
@@ -156,7 +157,11 @@ var myValidateData = {
 
 
     dataValidate: function (formElements) {
+        var data = {};
+        var radiobtns = document.getElementsByClassName("radiobuttonRequired");
+        var checkbox = document.getElementsByClassName("checkboxRequired");
         for (let elm of formElements) {
+            let name = elm.name;
             let val = elm.value;
             let err = elm.dataset.errormessage;
             for (let cla of elm.classList) {
@@ -164,11 +169,17 @@ var myValidateData = {
                     myValidateData[this.collections.checkClass[cla]](elm, cla, err, val);
                 }
             }
-        }
+            let d = {
+                [name]: val,
+            };
+            data = {
+                ...data,
+                ...d
+            };
 
-        var radiobtns = document.getElementsByClassName("radiobuttonRequired");
+        }
+        console.log(data);
         myValidateData[this.collections.checkClass["radiobuttonRequired"]](radiobtns);
-        var checkbox = document.getElementsByClassName("checkboxRequired");
         myValidateData[this.collections.checkClass["checkboxRequired"]](checkbox);
     },
 
