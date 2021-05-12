@@ -99,7 +99,7 @@ var myValidateData = {
         }
     },
     checkOption: function (tag, cla, err, val) {
-        if (val == "none") {
+        if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorClass(tag.nextElementSibling, "error_value");
             this.collections.err_message(tag, err, "option");
@@ -116,7 +116,6 @@ var myValidateData = {
             const allEqual = arr => arr.every(val => val === arr[0]);
             for (key in inps) {
                 if (!isNaN(key)) {
-
                     let bool = inps[key].checked;
                     clicks.push(bool);
                 }
@@ -158,8 +157,7 @@ var myValidateData = {
 
     dataValidate: function (formElements) {
         var data = {};
-        var radiobtns = document.getElementsByClassName("radiobuttonRequired");
-        var checkbox = document.getElementsByClassName("checkboxRequired");
+        var d = {};
         for (let elm of formElements) {
             let name = elm.name;
             let val = elm.value;
@@ -169,18 +167,49 @@ var myValidateData = {
                     myValidateData[this.collections.checkClass[cla]](elm, cla, err, val);
                 }
             }
-            let d = {
-                [name]: val,
-            };
-            data = {
-                ...data,
-                ...d
-            };
+            if (elm.type == "submit") {
+
+            } else if (elm.type == "radio" && elm.checked == true) {
+                d = {
+                    [name]: val,
+                };
+                data = {
+                    ...data,
+                    ...d
+                };
+            } else if (elm.type == "checkbox" && elm.checked == true) {
+                d = {
+                    [name]: val,
+                };
+                data = {
+                    ...data,
+                    ...d
+                };
+            } else if (elm.type == 'text' || elm.type == 'textarea') {
+                d = {
+                    [name]: val,
+                };
+                data = {
+                    ...data,
+                    ...d
+                };
+            } else if (elm.type == 'select-one') {
+                d = {
+                    [name]: val,
+                };
+                data = {
+                    ...data,
+                    ...d
+                };
+            }
+
 
         }
-        console.log(data);
+        var radiobtns = document.getElementsByClassName("radiobuttonRequired");
         myValidateData[this.collections.checkClass["radiobuttonRequired"]](radiobtns);
+        var checkbox = document.getElementsByClassName("checkboxRequired");
         myValidateData[this.collections.checkClass["checkboxRequired"]](checkbox);
+        return data;
     },
 
 };

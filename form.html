@@ -29,7 +29,7 @@
             <div>
                 <label>Select 1 Car</label>
                 <select name="cars" class="optionRequired" data-errormessage="Please select">
-                    <option value="none">--select--</option>
+                    <option value="">--select--</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
                     <option value="mercedes">Mercedes</option>
@@ -38,8 +38,8 @@
             </div>
             <div>
                 <label>Select 2 car</label>
-                <select name="cars" class="optionRequired">
-                    <option value="none">--select--</option>
+                <select name="cars2" class="optionRequired">
+                    <option value="">--select--</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
                     <option value="mercedes">Mercedes</option>
@@ -114,7 +114,8 @@
         //#onSubmit button
         document.getElementById("formValidate").onsubmit = function (e) {
             e.preventDefault();
-            myValidateData.dataValidate(allForm);
+            var data = myValidateData.dataValidate(allForm);
+            console.log(data);
         };
     </script>
 
