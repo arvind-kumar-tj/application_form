@@ -20,6 +20,26 @@ var myValidateData = {
             "e_checkbox": "Please select any one",
             "e_button": "Please click on the button"
         },
+        //create span element for error showing
+        addErrorElement: function (tag, err, e_text) {
+            if (tag.parentNode.nextSibling.className == "error_value") {
+                let elm = tag.parentNode.nextElementSibling;
+                this.err_message(elm, err, e_text);
+            } else {
+                let spanElement = document.createElement("span");
+                this.addErrorClass(spanElement, "error_value");
+                spanElement = this.err_message(spanElement, err, e_text);
+                // tag.parentNode.insertBefore(spanElement, tag.nextSibling); //
+                tag.parentNode.after(spanElement);
+            }
+        },
+        //remove span element for if error will not showing
+        removeErrorElement: function (tag) {
+            if (tag.parentNode.nextSibling.className == "error_value") {
+                let elm = tag.parentNode.nextElementSibling;
+                elm.remove();
+            }
+        },
         //add the class in tag
         addErrorClass: function (tag, cla) {
             tag.classList.add(cla);
@@ -29,82 +49,76 @@ var myValidateData = {
             tag.classList.remove(cla);
         },
         //add icon & text in tag which defined in this funtion
-        err_text: function (tag, e_text) {
-            tag.nextElementSibling.innerHTML = this.addErrorText["e_icon"] + this.addErrorText["e_" + e_text];
+        err_text: function (errorTag, e_text) {
+            errorTag.innerHTML = this.addErrorText["e_icon"] + this.addErrorText["e_" + e_text];
         },
         //add icon & text value from user in tag
-        err_text_val: function (tag, e_text) {
-            tag.nextElementSibling.innerHTML = this.addErrorText["e_icon"] + e_text;
+        err_text_val: function (errorTag, e_text) {
+            errorTag.innerHTML = this.addErrorText["e_icon"] + e_text;
         },
         //combine the err_text() & err_text_val()
-        err_message: function (tag, err, err_text) {
+        err_message: function (errorTag, err, err_text) {
             if (err == undefined) {
-                this.err_text(tag, err_text)
+                this.err_text(errorTag, err_text)
+                return errorTag;
             } else {
-                this.err_text_val(tag, err)
+                this.err_text_val(errorTag, err)
+                return errorTag;
             }
         },
     },
 
 
 
-    checkRequire: function (tag, cla, err, val) {
+    checkRequire: function (tag, err, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "field");
-            return true;
+            this.collections.addErrorElement(tag, err, "field");
         } else {
-            tag.nextElementSibling.innerHTML = "";
+            this.collections.removeErrorElement(tag);
             this.collections.removeErrorClass(tag, "validation_error");
         }
     },
-    checkText: function (tag, cla, err, val) {
+    checkText: function (tag, err, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "field");
+            this.collections.addErrorElement(tag, err, "field");
         } else {
-            tag.nextElementSibling.innerHTML = "";
+            this.collections.removeErrorElement(tag);
             this.collections.removeErrorClass(tag, "validation_error");
         }
     },
-    checkNumber: function (tag, cla, err, val) {
+    checkNumber: function (tag, err, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "field");
+            this.collections.addErrorElement(tag, err, "field");
         } else if (isNaN(val)) {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "number");
+            this.collections.addErrorElement(tag, err, "number");
         } else {
-            tag.nextElementSibling.innerHTML = "";
+            this.collections.removeErrorElement(tag);
             this.collections.removeErrorClass(tag, "validation_error");
         }
     },
-    checkEmail: function (tag, cla, err, val) {
+    checkEmail: function (tag, err, val) {
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "field");
+            this.collections.addErrorElement(tag, err, "field");
         } else if (!val.match(mailformat)) {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "email");
+            this.collections.addErrorElement(tag, err, "email");
         } else {
-            tag.nextElementSibling.innerHTML = "";
+            this.collections.removeErrorElement(tag);
             this.collections.removeErrorClass(tag, "validation_error");
         }
     },
-    checkOption: function (tag, cla, err, val) {
+    checkOption: function (tag, err, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
-            this.collections.addErrorClass(tag.nextElementSibling, "error_value");
-            this.collections.err_message(tag, err, "option");
+            this.collections.addErrorElement(tag, err, "option");
         } else {
-            tag.nextElementSibling.innerHTML = "";
+            this.collections.removeErrorElement(tag);
             this.collections.removeErrorClass(tag, "validation_error");
         }
     },
@@ -121,10 +135,9 @@ var myValidateData = {
                 }
             }
             if (allEqual(clicks)) {
-                this.collections.addErrorClass(elms.nextElementSibling, "error_value");
-                this.collections.err_message(elms, err_message, "radio");
+                this.collections.addErrorElement(elms, err_message, "option");
             } else {
-                elms.nextElementSibling.innerHTML = "";
+                this.collections.removeErrorElement(elms);
             }
             clicks.splice(0, inps.length);
         }
@@ -143,30 +156,19 @@ var myValidateData = {
                 }
             }
             if (clicks.includes(false) && allEqual(clicks)) {
-                this.collections.addErrorClass(elms.nextElementSibling, "error_value");
-                this.collections.err_message(elms, err_message, "checkbox");
+                this.collections.addErrorElement(elms, err_message, "option");
             } else {
-                elms.nextElementSibling.innerHTML = "";
+                this.collections.removeErrorElement(elms);
             }
             clicks.splice(0, inps.length);
         }
     },
-
-
-
-
-    dataValidate: function (formElements) {
+    getData: function (formElements) {
         var data = {};
         var d = {};
         for (let elm of formElements) {
             let name = elm.name;
             let val = elm.value;
-            let err = elm.dataset.errormessage;
-            for (let cla of elm.classList) {
-                if (this.collections.checkClass.hasOwnProperty(cla)) {
-                    myValidateData[this.collections.checkClass[cla]](elm, cla, err, val);
-                }
-            }
             if (elm.type == "submit") {
 
             } else if (elm.type == "radio" && elm.checked == true) {
@@ -202,13 +204,27 @@ var myValidateData = {
                     ...d
                 };
             }
-
-
         }
-        var radiobtns = document.getElementsByClassName("radiobuttonRequired");
-        myValidateData[this.collections.checkClass["radiobuttonRequired"]](radiobtns);
-        var checkbox = document.getElementsByClassName("checkboxRequired");
-        myValidateData[this.collections.checkClass["checkboxRequired"]](checkbox);
+        return data;
+    },
+
+
+
+
+    dataValidate: function (formElements) {
+
+        for (let elm of formElements) {
+            let val = elm.value;
+            let err = elm.dataset.errormessage;
+            for (let cla of elm.classList) {
+                if (this.collections.checkClass.hasOwnProperty(cla)) {
+                    myValidateData[this.collections.checkClass[cla]](elm, err, val);
+                }
+            }
+        }
+        myValidateData[this.collections.checkClass["radiobuttonRequired"]](formElements.getElementsByClassName("radiobuttonRequired"));
+        myValidateData[this.collections.checkClass["checkboxRequired"]](formElements.getElementsByClassName("checkboxRequired"));
+        data = this.getData(formElements);
         return data;
     },
 

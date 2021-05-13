@@ -14,16 +14,12 @@ body {
     width: 18em;
     height: max-content;
     margin-top: -9em;
-    /*set to a negative number 1/2 of your height*/
     margin-left: -9em;
-    /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
     background-color: #f3f3f3;
 }
 
-.validation_error {
-    box-shadow: 0px 0px 5px;
-}
+
 
 .mainform {
     display: flex;
@@ -46,9 +42,8 @@ button {
     outline: none;
 }
 
-span.error_value {
-    color: #ff0000;
-    font-size: 14px;
+.mainform>div {
+    display: grid;
 }
 
 
