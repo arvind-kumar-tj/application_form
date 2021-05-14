@@ -78,18 +78,21 @@ var myValidateData = {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorElement(tag, err, "field");
+            return true;
         }
     },
     checkText: function (tag, err, name, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorElement(tag, err, "text");
+            return true;
         }
     },
     checkNumber: function (tag, err, name, val) {
         if (isNaN(val)) {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorElement(tag, err, "number");
+            return true;
         }
     },
     checkEmail: function (tag, err, name, val) {
@@ -97,15 +100,18 @@ var myValidateData = {
         if (!val.match(mailformat)) {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorElement(tag, err, "email");
+            return true;
         }
     },
     checkOption: function (tag, err, name, val) {
         if (val == "") {
             this.collections.addErrorClass(tag, "validation_error");
             this.collections.addErrorElement(tag, err, "option");
+            return true;
         }
     },
     checkRadiobutton: function (formElements) {
+        let err = this.collections.addErrorText.customError;
         let clicks = [];
         for (let elms of formElements) {
             let inps = elms.getElementsByTagName("input");
@@ -155,38 +161,43 @@ var myValidateData = {
             ...this.collections.addErrorText.customError,
             ...errors
         };
-        set1 = formElements.querySelectorAll('input[type="text"],textarea,select')
-        for (let elm of set1) {
+        for (let elm of formElements) {
             let name = elm.name;
             let val = elm.value;
             let err = elm.dataset.errormessage;
             for (let cla of elm.classList) {
                 let errtag = elm.nextElementSibling;
-                // myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
                 if (this.collections.checkClass.hasOwnProperty(cla)) {
                     if (this.collections.addErrorText.customError.hasOwnProperty(name) && errtag == null) {
                         let err = this.collections.addErrorText.customError[name].error;
-                        myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
-                        break;
-                    } else if (this.collections.addErrorText.customError.hasOwnProperty(name)) {
+                        r = myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
+                        if (r == true) {
+                            break;
+                        }
+                    } else if (this.collections.addErrorText.customError.hasOwnProperty(name) && errtag !== null) {
                         let err = this.collections.addErrorText.customError[name].error;
-                        myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
-                    } else if (errtag == null) {
-                        myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
-                        break;
+                        r = myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
+                        if (r == true) {
+                            break;
+                        } else {
+                            this.collections.removeErrorElement(elm);
+                            this.collections.removeErrorClass(elm, "validation_error");
+                        }
                     } else {
-                        this.collections.removeErrorElement(elm);
-                        this.collections.removeErrorClass(elm, "validation_error");
+                        r = myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
+                        if (r == true) {
+                            break;
+                        } else {
+                            this.collections.removeErrorElement(elm);
+                            this.collections.removeErrorClass(elm, "validation_error");
+                        }
                     }
-                } else {
-                    this.collections.removeErrorElement(elm);
-                    this.collections.removeErrorClass(elm, "validation_error");
                 }
             }
         }
-        set2 = formElements.querySelectorAll('.radiobuttonRequired')
+        set2 = formElements.querySelectorAll('.radiobuttonRequired');
         dradio = myValidateData[this.collections.checkClass["radiobuttonRequired"]](set2);
-        set3 = formElements.querySelectorAll('.checkboxRequired')
+        set3 = formElements.querySelectorAll('.checkboxRequired');
         dcheckbox = myValidateData[this.collections.checkClass["checkboxRequired"]](set3);
     },
 
