@@ -164,13 +164,19 @@ var myValidateData = {
                 let errtag = elm.nextElementSibling;
                 // myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
                 if (this.collections.checkClass.hasOwnProperty(cla)) {
-                    if (this.collections.addErrorText.customError.hasOwnProperty(name)) {
+                    if (this.collections.addErrorText.customError.hasOwnProperty(name) && errtag == null) {
                         let err = this.collections.addErrorText.customError[name].error;
                         myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
                         break;
-                    } else if (this.collections.addErrorText.customError.hasOwnProperty(name) || errtag == null) {
+                    } else if (this.collections.addErrorText.customError.hasOwnProperty(name)) {
+                        let err = this.collections.addErrorText.customError[name].error;
+                        myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
+                    } else if (errtag == null) {
                         myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
                         break;
+                    } else {
+                        this.collections.removeErrorElement(elm);
+                        this.collections.removeErrorClass(elm, "validation_error");
                     }
                 } else {
                     this.collections.removeErrorElement(elm);
