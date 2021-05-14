@@ -115,6 +115,7 @@ var myValidateData = {
         let clicks = [];
         for (let elms of formElements) {
             let inps = elms.getElementsByTagName("input");
+            let name = inps[0].name;
             let err_message = elms.dataset.errormessage;
             const allEqual = arr => arr.every(val => val === arr[0]);
             for (key in inps) {
@@ -124,7 +125,12 @@ var myValidateData = {
                 }
             }
             if (allEqual(clicks)) {
-                this.collections.addErrorElement(elms, err_message, "radio");
+                if (err.hasOwnProperty(name)) {
+                    let err_message = err[name].error;
+                    this.collections.addErrorElement(elms, err_message, "radio");
+                } else {
+                    this.collections.addErrorElement(elms, err_message, "radio");
+                }
             } else {
                 this.collections.removeErrorElement(elms);
             }
@@ -132,11 +138,12 @@ var myValidateData = {
         }
     },
     checkCheckbox: function (formElements) {
+        let err = this.collections.addErrorText.customError;
         let clicks = [];
         for (let elms of formElements) {
             let inps = elms.getElementsByTagName("input");
+            let name = inps[0].name;
             let err_message = elms.dataset.errormessage;
-            let err = elms.lastElementChild;
             const allEqual = arr => arr.every(val => val === arr[0]);
             for (key in inps) {
                 if (!isNaN(key)) {
@@ -145,7 +152,12 @@ var myValidateData = {
                 }
             }
             if (clicks.includes(false) && allEqual(clicks)) {
-                this.collections.addErrorElement(elms, err_message, "checkbox");
+                if (err.hasOwnProperty(name)) {
+                    let err_message = err[name].error;
+                    this.collections.addErrorElement(elms, err_message, "checkbox");
+                } else {
+                    this.collections.addErrorElement(elms, err_message, "checkbox");
+                }
             } else {
                 this.collections.removeErrorElement(elms);
             }

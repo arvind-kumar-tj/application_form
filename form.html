@@ -103,8 +103,28 @@
                 </div>
             </div>
 
-
-
+            <div>
+                <label>Select Choice 1</label>
+                <div class="radiobuttonRequired">
+                    <label><input type="radio" name="choice1" value="yes">
+                        Yes</label>
+                    <label><input type="radio" name="choice1" value="no">
+                        No</label>
+                </div>
+            </div>
+            <div>
+                <label>Select Social Media</label>
+                <div class="checkboxRequired">
+                    <label><input type="checkbox" name="social_media2" value="Facebook">
+                        Facebook</label>
+                    <label><input type="checkbox" name="social_media2" value="Instagram">
+                        Instagram</label>
+                    <label><input type="checkbox" name="social_media2" value="Google+">
+                        Google+</label>
+                    <label><input type="checkbox" name="social_media2" value="Others">
+                        Others</label>
+                </div>
+            </div>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -126,8 +146,23 @@
                     phoneno: {
                         error: "phone no error"
                     },
+                    profession: {
+                        error: "profession error"
+                    },
                     cars2: {
                         error: "car 2 error"
+                    },
+                    remarks: {
+                        error: "remarks error"
+                    },
+                    gender: {
+                        error: "gender error"
+                    },
+                    choice1: {
+                        error: "choice1 error"
+                    },
+                    social_media2: {
+                        error: "social_media2 error"
                     }
                 });
         };
