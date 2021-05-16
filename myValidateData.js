@@ -181,7 +181,7 @@ var myValidateData = {
                 let errtag = elm.nextElementSibling;
                 if (this.collections.checkClass.hasOwnProperty(cla)) {
                     if (this.collections.addErrorText.customError.hasOwnProperty(name) && errtag == null) {
-                        let err = this.collections.addErrorText.customError[name];
+                        let err = this.collections.addErrorText.customError[name].error;
                         r = myValidateData[this.collections.checkClass[cla]](elm, err, name, val);
                         if (r == true) {
                             break;
