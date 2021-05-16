@@ -3,28 +3,33 @@
 # add class in input tag as follows
 
 ## for all inputs except radio buttons and checkboxs
-- if input/textarea is require feild then add **fieldRequired** as className in that input.
+- if input/textarea is require feild then add **fieldRequired** as className in that input and put it into div element as shown below
 ```html
+<div>
     <label>Username</label>
     <input type="text" name="name" class="fieldRequired" data-errormessage="Please enter your username" />
-    <span></span>
+</div>
 ```
 
-- if input is number feild then add **numberRequired** as className in that input.
+- if input is number feild then add **numberRequired** as className in that input and put it into div element as shown below
 ```html
+<div>
     <label>Mobile No</label>
     <input type="text" name="name" class="numberRequired" data-errormessage="Please enter your mobile no" />
-    <span></span>
+</div>
 ```
 
-- if input is email feild then add **emailRequired** as className in that input.
+- if input is email feild then add **emailRequired** as className in that input and put it into div element as shown below
 ```html
+<div>
     <label>Email Id</label>
-    <input type="text" name="email" class="emailRequired" /><span></span>
+    <input type="text" name="email" class="emailRequired" />
+</div>
 ```
 
-- if input is select feild with options as a dropdown then add **optionRequired** as className in that select tag.
+- if input is select feild with options as a dropdown then add **optionRequired** as className in that select tag and put it into div element as shown below
 ```html
+<div>
     <label>Select 1 Car</label>
     <select name="cars" class="optionRequired" data-errormessage="Please select">
         <option value="none">--select--</option>
@@ -32,12 +37,14 @@
         <option value="saab">Saab</option>
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
-    </select><span></span>
+    </select>
+</div>
 ```
 
 ## for radio buttons & checkboxs
-- put all the radio buttons inside a div element & give class of **radiobuttonRequired** and put input[type="radio"] inside it.
+- put all the radio buttons inside a div element & give class of **radiobuttonRequired** and put input[type="radio"] inside it
 ```html
+<div>
     <label>Select Gender</label>
     <div class="radiobuttonRequired" data-errormessage="Please click one">
         <label><input type="radio" name="gender" value="male">
@@ -46,11 +53,13 @@
             Female</label>
         <label><input type="radio" name="gender" value="other">
             Other</label>
-    </div><span></span>
+    </div>
+</div>
 ```
 
 - put all the radio buttons inside a div element & give class of **checkboxRequired** and put input[type="checkbox"] inside it.
 ```html
+<div>
     <label>Select Profession</label>
     <div class="checkboxRequired">
         <label><input type="checkbox" name="profession" value="Student">
@@ -61,7 +70,12 @@
             Administrator</label>
         <label><input type="checkbox" name="profession" value="Others">
             Others</label>
-    </div><span></span>
+    </div>
+</div>
 ```
+
+
+> ***Note:*** You can add custom error values if you want for that you just need to add **data-errormessage** attribute in that same element in which you add classes for data validation like above.
+
 
 Style them as per your need by selecting that element by its parent as I do in this files
