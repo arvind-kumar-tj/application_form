@@ -75,7 +75,24 @@
 ```
 
 
-> ***Note:*** You can add custom error values if you want for that you just need to add **data-errormessage** attribute in that same element in which you add classes for data validation like above.
+> ***Note:*** You can add custom error values 
+1. you just need to add **data-errormessage** attribute in that same element in which you add classes for data validation like above.
+
+2. you can add second argument as **object** with object of attribute name as key in the same function in which you send the form for validation like i do in form.html file at line no 139
+```javascript
+    {
+        username: {
+            error: "Username error"
+        },
+        phoneno: {
+            error: "phone no error"
+        },
+        profession: {
+            error: "profession error"
+        },
+    }
+
+```
 
 
 Style them as per your need by selecting that element by its parent as I do in this files
